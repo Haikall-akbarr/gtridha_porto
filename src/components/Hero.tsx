@@ -69,13 +69,13 @@ export default function Hero() {
         <div className="inline-block px-5 py-2 bg-pink-100 rounded-full text-pink-600 text-sm font-bold tracking-widest uppercase">
           Digital Marketer & Beauty Enthusiast
         </div>
-        <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold text-dark tracking-tighter leading-[1.1]">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-dark tracking-tighter leading-[1.1]">
           Hi, I'm <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-pink-700">
             Gusti Ridha
           </span>
         </h1>
-        <p className="text-xl text-gray-600 md:max-w-lg leading-relaxed">
+        <p className="text-lg md:text-xl text-gray-600 md:max-w-lg leading-relaxed">
           Mahasiswa Bisnis Digital dengan pengalaman praktis dalam manajemen event dan koordinasi sponsorship.
         </p>
         <div className="flex flex-wrap gap-4 pt-4">

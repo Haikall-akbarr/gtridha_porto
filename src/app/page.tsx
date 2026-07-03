@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-pink-300 selection:text-white font-sans overflow-hidden">
-      <div className="max-w-5xl mx-auto px-6 py-12 md:py-24 space-y-32">
+      <div className="max-w-5xl mx-auto px-6 py-12 md:py-24 space-y-20 md:space-y-32">
         
         {/* Section 1: Hero */}
         <section id="hero">
@@ -37,7 +37,7 @@ export default function Home() {
         </section>
 
         {/* Section 2: Experience */}
-        <section id="experience" className="space-y-10">
+        <section id="experience" className="space-y-8 md:space-y-10">
           <div className="text-center md:text-left">
             <h2 className="text-4xl md:text-5xl font-bold text-dark tracking-tight">Pengalaman</h2>
             <p className="text-pink-600 mt-3 font-medium text-lg">Perjalanan karir & proyek yang saya kelola</p>
@@ -50,7 +50,7 @@ export default function Home() {
         </section>
 
         {/* Section 3: Skills (Bento Grid) */}
-        <section id="skills" className="space-y-10">
+        <section id="skills" className="space-y-8 md:space-y-10">
           <div className="text-center md:text-left">
             <h2 className="text-4xl md:text-5xl font-bold text-dark tracking-tight">Keahlian</h2>
             <p className="text-pink-600 mt-3 font-medium text-lg">Apa yang bisa saya lakukan</p>
@@ -64,7 +64,7 @@ export default function Home() {
         </section>
 
         {/* Section 5: Education */}
-        <section id="education" className="space-y-10 pb-20">
+        <section id="education" className="space-y-8 md:space-y-10 pb-20">
           <div className="text-center md:text-left">
             <h2 className="text-4xl md:text-5xl font-bold text-dark tracking-tight">Pendidikan</h2>
           </div>

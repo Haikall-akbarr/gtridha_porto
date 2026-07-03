@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import ExperienceCard from "@/components/ExperienceCard";
 import SkillBentoGrid from "@/components/SkillBentoGrid";
+import Gallery from "@/components/Gallery";
 
 export default function Home() {
   const experiences = [
@@ -57,7 +58,12 @@ export default function Home() {
           <SkillBentoGrid />
         </section>
 
-        {/* Section 4: Education */}
+        {/* Section 4: Gallery Instagram */}
+        <section id="gallery">
+          <Gallery />
+        </section>
+
+        {/* Section 5: Education */}
         <section id="education" className="space-y-10 pb-20">
           <div className="text-center md:text-left">
             <h2 className="text-4xl md:text-5xl font-bold text-dark tracking-tight">Pendidikan</h2>

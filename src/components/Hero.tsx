@@ -13,7 +13,7 @@ export default function Hero() {
         className="flex-1 space-y-8"
       >
         <div className="inline-block px-5 py-2 bg-pink-100 rounded-full text-pink-600 text-sm font-bold tracking-widest uppercase">
-          Digital Marketer & Event PR
+          Digital Marketer & Beauty Enthusiast
         </div>
         <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold text-dark tracking-tighter leading-[1.1]">
           Hi, I'm <br />

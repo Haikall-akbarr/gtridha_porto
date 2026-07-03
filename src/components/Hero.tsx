@@ -1,9 +1,63 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
 
 export default function Hero() {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const springConfig = { damping: 20, stiffness: 100 };
+  const smoothX = useSpring(x, springConfig);
+  const smoothY = useSpring(y, springConfig);
+
+  const rotateX = useTransform(smoothY, [-45, 45], [15, -15]);
+  const rotateY = useTransform(smoothX, [-45, 45], [-15, 15]);
+
+  useEffect(() => {
+    // Gyroscope untuk HP
+    const handleOrientation = (e: DeviceOrientationEvent) => {
+      let beta = e.beta || 0; // x-axis
+      let gamma = e.gamma || 0; // y-axis
+
+      // Batasi sudut maksimal agar tidak terbalik/berputar terlalu ekstrem
+      beta = Math.max(-45, Math.min(45, beta));
+      gamma = Math.max(-45, Math.min(45, gamma));
+
+      y.set(beta);
+      x.set(gamma);
+    };
+
+    // Mouse movement untuk Desktop
+    const handleMouseMove = (e: MouseEvent) => {
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      
+      const offsetX = ((e.clientX - centerX) / centerX) * 45;
+      const offsetY = ((e.clientY - centerY) / centerY) * 45;
+
+      x.set(offsetX);
+      y.set(-offsetY); // Invert axis untuk feel alami
+    };
+
+    if (typeof window !== "undefined") {
+      if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", handleOrientation);
+      }
+      window.addEventListener("mousemove", handleMouseMove);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        if (window.DeviceOrientationEvent) {
+          window.removeEventListener("deviceorientation", handleOrientation);
+        }
+        window.removeEventListener("mousemove", handleMouseMove);
+      }
+    };
+  }, [x, y]);
+
   return (
     <div className="flex flex-col md:flex-row items-center justify-between gap-16 mt-10">
       <motion.div 
@@ -44,15 +98,19 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Decorative Image Container */}
+      {/* Container Gambar dengan Efek Parallax (Gyro & Mouse) */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         className="flex-1 w-full max-w-sm md:max-w-md"
+        style={{ perspective: 1000 }} // Tambahkan perspective agar efek 3D terlihat
       >
-        <div className="aspect-square bg-gradient-to-tr from-pink-200 to-pink-100 rounded-[3rem] p-4 rotate-3 hover:rotate-0 transition-transform duration-500 ease-out">
-          <div className="w-full h-full bg-white rounded-[2.5rem] shadow-sm flex items-center justify-center border border-pink-50 overflow-hidden relative">
+        <motion.div 
+          style={{ rotateX, rotateY }} // Aplikasikan orientasi rotasi X dan Y
+          className="aspect-square bg-gradient-to-tr from-pink-200 to-pink-100 rounded-[3rem] p-4 shadow-xl hover:shadow-2xl transition-shadow duration-500 ease-out"
+        >
+          <div className="w-full h-full bg-white rounded-[2.5rem] flex items-center justify-center border border-pink-50 overflow-hidden relative">
             <Image 
               src="/assets/gtrd_foto.jpg"
               alt="Gusti Ridha"
@@ -62,7 +120,7 @@ export default function Hero() {
               priority
             />
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </div>
   );
